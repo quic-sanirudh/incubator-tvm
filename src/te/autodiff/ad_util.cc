@@ -52,9 +52,13 @@ PrimExpr CloneReduction(const PrimExpr& expr) {
     for (const auto& src : red->source) {
       src_with_newaxis.push_back(tir::Substitute(src, vmap));
     }
+    Array<PrimExpr> init_with_newaxis;
+    for (const auto& init : red->init) {
+      init_with_newaxis.push_back(tir::Substitute(init, vmap));
+    }
 
     return Reduce(red->combiner, src_with_newaxis, new_axis, tir::Substitute(red->condition, vmap),
-                  red->value_index);
+                  red->value_index, init_with_newaxis);
   } else {
     return expr;
   }

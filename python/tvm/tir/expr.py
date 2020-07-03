@@ -434,10 +434,10 @@ class Reduce(PrimExprWithOp):
     value_index : int
         The value index.
     """
-    def __init__(self, combiner, src, rdom, condition, value_index):
+    def __init__(self, combiner, src, rdom, condition, value_index, init=None):
         self.__init_handle_by_constructor__(
             _ffi_api.Reduce, combiner, src, rdom,
-            condition, value_index)
+            condition, value_index, init)
 
 
 @tvm._ffi.register_object
