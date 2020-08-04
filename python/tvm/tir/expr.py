@@ -433,6 +433,9 @@ class Reduce(PrimExprWithOp):
 
     value_index : int
         The value index.
+
+    init : list of Expr
+        The initial value for output. This can be an int, float or ProducerLoad
     """
     def __init__(self, combiner, src, rdom, condition, value_index, init=None):
         self.__init_handle_by_constructor__(

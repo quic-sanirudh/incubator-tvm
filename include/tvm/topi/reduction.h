@@ -43,7 +43,8 @@ namespace topi {
 using namespace tvm::te;
 
 /*! \brief The operation to use for CommReduce */
-using FReduce = std::function<PrimExpr(PrimExpr source, const Array<IterVar>& axis, Array<PrimExpr> init)>;
+using FReduce =
+    std::function<PrimExpr(PrimExpr source, const Array<IterVar>& axis, Array<PrimExpr> init)>;
 
 /*! \brief The operation to use for CommReduceIdx */
 using FCommReduce = std::function<Array<PrimExpr>(Array<PrimExpr> exprs, const Array<IterVar>& axis,
@@ -291,15 +292,17 @@ inline FCommReduce MakeCommReducer(FCombine fcombine, FIdentity fidentity,
 }
 
 /*! \brief Wrap tvm::min to ensure we get the correct overload */
-inline PrimExpr MinOp(PrimExpr source, Array<IterVar> axis, Array<PrimExpr> init={}) { return tvm::min(source, axis, init); }
+inline PrimExpr MinOp(PrimExpr source, Array<IterVar> axis, Array<PrimExpr> init = {}) {
+  return tvm::min(source, axis, init);
+}
 
 /*! \brief Wrap tvm::max to ensure we get the correct overload */
-inline PrimExpr MaxOp(PrimExpr source, Array<IterVar> axis, Array<PrimExpr> init={}) {
+inline PrimExpr MaxOp(PrimExpr source, Array<IterVar> axis, Array<PrimExpr> init = {}) {
   return tvm::max(source, axis, init);  // NOLINT(*)
 }
 
 /*! \brief Wrap tvm::prod to ensure we get the correct overload */
-inline PrimExpr ProdOp(PrimExpr source, Array<IterVar> axis, Array<PrimExpr> init={}) {
+inline PrimExpr ProdOp(PrimExpr source, Array<IterVar> axis, Array<PrimExpr> init = {}) {
   return tvm::prod(source, axis, init);  // NOLINT(*)
 }
 
